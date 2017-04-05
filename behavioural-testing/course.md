@@ -31,11 +31,19 @@ Referer: https://literaryreview.co.uk/
 ```
 ---
 #Requirements
-* The `Content-type` must be `application/json`
-* The `Referer` must have a valid URI format
-* Each `isbn` must be 13 numeric characters
-* Each `score` must be a value between 0 and 100 inclusive.
-* Each valid review will be saved to our database. The database service has the following interface:
+When a review is received it will validated. The table below shows the validation
+and which status code and message to respond with on failure.
+
+| Validation                                    | Status Code    | Error Message                   |
+|-----------------------------------------------|----------------|---------------------------------|
+| The `Content-type` must be `application/json` | 415            | Incorrect content type          |
+| The `Referer` must have a valid URI format    | 400            | Bad referer uri                 |
+| The `isbn` must be 13 numeric characters      | 400            | Invalid ISBN                    |
+| The `score` must be between 0 and 100.        | 400            | Score must be between 0 and 100 |
+
+---
+#Requirements (cont.)
+A valid review will be saved to our database using the `ISaveReviews` interface which has the following signature:
 
 ```c#
 public interface ISaveReviews
@@ -51,6 +59,9 @@ public class ReviewDto
     public int Score { get; set; }
 }
 ```
+
+After the save a status code 201 is sent with no error message.
+
 ---
 #Bad example
 Module or controller or handler
