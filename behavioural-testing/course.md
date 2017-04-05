@@ -17,19 +17,16 @@ Referer: https://literaryreview.co.uk/
 ```
 ```json
 {
-    "books": [
-        {
-            "isbn": "9788175257665",
-            "title": "War and Peace",
-            "reviews": [
-                {
-                    "reviewer": "Karen Castle",
-                    "score": 87,
-                    "content": "blah blah blah"
-                }
-            ]
-        }
-    ]
+    "whenPosted" : "2017-04-03T18:25:43.511Z",
+    "book": {
+        "isbn": "9788175257665",
+        "title": "War and Peace"
+    },
+    "review": {
+        "reviewer": "Karen Castle",
+        "score": 87,
+        "content": "blah blah blah"
+    }
 }
 ```
 ---

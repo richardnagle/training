@@ -1,15 +1,18 @@
-﻿namespace reviews_service.infrastructure
+﻿using System;
+
+namespace reviews_service.infrastructure
 {
     public class PostedReviews
     {
-        public Book[] Books { get; set; }
+        public DateTime WhenPosted { get; set; }
+        public Book Book { get; set; }
+        public BookReview Review { get; set; }
     }
 
     public class Book
     {
         public string ISBN { get; set; }
         public string Title { get; set; }
-        public BookReview[] Reviews { get; set; }
     }
 
     public class BookReview
