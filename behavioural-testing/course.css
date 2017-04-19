@@ -6,3 +6,13 @@ h1, h2, h3 {
 .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
 tr:nth-child(even) {background: #CCC}
 tr:nth-child(odd) {background: #FFF}
+.written-text {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: larger;
+  text-indent: 10%;
+  line-height: 75%;
+  }
+.red-text {  color: red }
+.green-text {  color: green }
+.blue-text { color: blue}
+.purple-text {color: purple}
