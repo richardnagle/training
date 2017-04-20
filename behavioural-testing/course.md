@@ -1,4 +1,3 @@
-<text id="markdown">
 class: centre, middle
 # Behavioural Unit Testing
 
@@ -177,4 +176,3 @@ Now start from scratch and do TDD in fully behavioural style.
     * *Imagine a World without Mocks*<br>
         [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
 ---
-</text>
