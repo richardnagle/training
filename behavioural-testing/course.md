@@ -1,11 +1,21 @@
 <text id="markdown">
 class: centre, middle
-# Behavioural Testing
+# Behavioural Unit Testing
 
 ---
-
+class: two-column
 #Intro
-Explain behaviour vs integration, classical vs mockist, chicago vs london
+.column[
+**Behavioural**
+* Classical
+* Chicago / Detroit
+]
+.column[
+**Interaction**
+* Mockist
+* London
+]
+
 ---
 #Case study
 We work for a publishing house developing a *Reviews-API* which receives book reviews and stores them.
@@ -151,5 +161,20 @@ How you go about TDD has a direct effect on the design if your code
 If you mostly test interactions, you'll get more interactions.
 If you mostly test behaviours, you'll get more behaviours.
 Now start from scratch and do TDD in fully behavioural style.
+---
+#Further reading
+* **Ron Jeffries**<br>
+    * *Thoughts on Mocks*<br>
+        [http://ronjeffries.com/articles/015-11/tdd-mocks/](http://ronjeffries.com/articles/015-11/tdd-mocks/)
+
+* **Jason Gorman**<br>
+    * *Classical TDD or "London School"*<br>
+        [http://codemanship.co.uk/parlezuml/blog/?postid=987](http://codemanship.co.uk/parlezuml/blog/?postid=987)
+
+* **Ken Scambler**<br>
+    * *To Kill a Mockingtest*<br>
+        [http://rea.tech/to-kill-a-mockingtest/](http://rea.tech/to-kill-a-mockingtest/)<br><br>
+    * *Imagine a World without Mocks*<br>
+        [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
 ---
 </text>
