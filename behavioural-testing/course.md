@@ -5,16 +5,24 @@ class: centre, middle
 class: two-column
 #Intro
 .column[
-**Behavioural**
-* Classical
-* Chicago / Detroit
+**Interaction**
+* Mockist style
+* London school
+* Tests interaction/collaberation
+* Many mocks/stubs
+* Little test data
+* Test fixture per class
 ]
 .column[
-**Interaction**
-* Mockist
-* London
+<br>
+**Behavioural**
+* Classic style
+* Chicago/Detroit school
+* Tests state (input/output)
+* Few mocks/stubs
+* Much test data
+* Test fixture per state (ish)
 ]
-
 ---
 #Case study
 We work for a publishing house developing a *Reviews-API* which receives book reviews and stores them.

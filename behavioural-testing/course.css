@@ -3,6 +3,7 @@ h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
+ul li { padding: 5px 0px }
 .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
 tr:nth-child(even) {background: #CCC}
 tr:nth-child(odd) {background: #FFF}
@@ -21,4 +22,4 @@ tr:nth-child(odd) {background: #FFF}
 .column:last-of-type {float:right}
 
 .two-column .column:first-of-type {width: 50%}
-.two-column .column:last-of-type {width: 50%; margin-top: 300px;}
+.two-column .column:last-of-type {width: 50%}
