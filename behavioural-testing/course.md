@@ -9,7 +9,7 @@ class: two-column
 * Mockist style
 * London school
 * Tests interaction/collaberation
-* Many mocks/stubs
+* Many mocks*
 * Little test data
 * Test fixture per class
 ]
@@ -19,10 +19,11 @@ class: two-column
 * Classic style
 * Chicago/Detroit school
 * Tests state (input/output)
-* Few mocks/stubs
+* Few mocks*
 * Much test data
 * Test fixture per state (ish)
 ]
+\*We'll use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
 ---
 #Case study
 We work for a publishing house developing a *Reviews-API* which receives book reviews and stores them.
@@ -163,6 +164,26 @@ Use builder
 * Cascading test failures
     * No fix but is this such a bad thing?
 ---
+#But, Hang-On, you used a Mock
+When should I use a mock
+
+*Rarely*
+
+No really
+
+*Yes, really. But if you must have a list....*
+
+* When something is slow
+    * Database
+    * Remote call
+* When something is difficult to set-up
+    * Database
+    * Statics (`DateTime.Now`)
+    * Third-party code
+* When something is unreliable
+    * Remote call
+* When behaviour is very complex (very rare)
+---
 #That's only half the story.
 All I did was take a sut designed in mocks style and improve tests to a behavioural style
 TDD is about design at least as much as testing
@@ -185,4 +206,3 @@ Now start from scratch and do TDD in fully behavioural style.
         [http://rea.tech/to-kill-a-mockingtest/](http://rea.tech/to-kill-a-mockingtest/)<br><br>
     * *Imagine a World without Mocks*<br>
         [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
----
