@@ -146,20 +146,22 @@ public interface .purple-text[IHtmlFormatter];
 Only mock persistence
 Use builder
 ---
-#What's don't I like about 1st example
-* Test readability
+#What I don't like about mockist example
+* Test complexity
+* Tests do not demonstrate behaviour
 * Tight coupling to code
 * Difficult to re factor
 * Too many tests
+* Testing incidentals (e.g. Mapper)
 ---
 #What's worse about behavioural testing
 * Test case organisation
     * Fix with feature folder
     * Fix with coverage tool
-* Cascading test failures
-    * No fix but is this such a bad thing?
 * Tight coupling to constructors
     * Fix with builders
+* Cascading test failures
+    * No fix but is this such a bad thing?
 ---
 #That's only half the story.
 All I did was take a sut designed in mocks style and improve tests to a behavioural style
