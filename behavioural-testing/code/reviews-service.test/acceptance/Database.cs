@@ -6,7 +6,7 @@ namespace reviews_service.test.acceptance
 {
     public class Database
     {
-        private string DatabaseFile => ReviewHandler.DatabaseFile;
+        private string DatabaseFile => RequestRepository.DatabaseFile;
 
         public void Reset()
         {

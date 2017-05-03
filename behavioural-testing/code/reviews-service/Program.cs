@@ -16,7 +16,7 @@ namespace reviews_service
             var body = args[1];
 
             var request = new RequestSerializer().Deserialize(header, body);
-            var handler = new ReviewHandler().Handle(request);
+            var handler = new ReviewHandler(new RequestRepository()).Handle(request);
 
             Console.WriteLine("** End **");
         }
