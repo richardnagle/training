@@ -6,28 +6,27 @@ namespace reviews_service.test.acceptance
 {
     public class Database
     {
-        private const string databaseFile =
-            @"c:\_root\training\behavioural-testing\code\reviews-service\bin\debug\reviews.db";
+        private string DatabaseFile => ReviewHandler.DatabaseFile;
 
         public void Reset()
         {
             if (!DbExists) return;
-            File.Delete(databaseFile);
+            File.Delete(DatabaseFile);
         }
 
         public void AssertWasSaved(ReviewDto reviewDto)
         {
-            Assert.That(DbExists, Is.True, $"Database file not found - {databaseFile}");
+            Assert.That(DbExists, Is.True, $"Database file not found - {DatabaseFile}");
             var rows = Read();
             Assert.That(rows.Length, Is.EqualTo(1), "unexpected count of rows");
             AssertRowsMatch(reviewDto, rows[0]);
         }
 
-        private static bool DbExists => File.Exists(databaseFile);
+        private bool DbExists => File.Exists(DatabaseFile);
 
         private string[] Read()
         {
-            return DbExists ? File.ReadAllLines(databaseFile) : new string[0];
+            return DbExists ? File.ReadAllLines(DatabaseFile) : new string[0];
         }
 
         private void AssertRowsMatch(ReviewDto expectedDto, string actual)

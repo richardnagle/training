@@ -1,0 +1,23 @@
+Content-type: application/json
+Referer: https://literaryreview.co.uk/
+---
+{
+    "isbn": "9788175257665",
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "reviewer": "Karen Castle",
+    "sections": [
+        {
+            "name": "Title",
+            "text": "A Classic of our Times"
+        },
+        {
+            "name": "SubTitle",
+            "text": "Karen Castle reviews Tolstoy's latest work"
+        },
+        {
+            "name": "Body",
+            "text": "Blah blah blah"
+        }
+    ]
+}

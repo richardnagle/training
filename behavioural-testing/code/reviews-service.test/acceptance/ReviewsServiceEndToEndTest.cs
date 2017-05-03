@@ -27,5 +27,19 @@ namespace reviews_service.test.acceptance
             _service.ReceiveReview("empty.http");
             _database.AssertWasSaved(new ReviewDto());
         }
+
+        [Test]
+        public void Save_a_valid_review()
+        {
+            _service.ReceiveReview("valid.http");
+            _database.AssertWasSaved(
+                new ReviewDto
+                {
+                    ISBN = 9788175257665,
+                    Reviewer = "Karen Castle",
+                    Text = "",
+                    Uri = "https://literaryreview.co.uk/"
+                });
+        }
     }
 }
