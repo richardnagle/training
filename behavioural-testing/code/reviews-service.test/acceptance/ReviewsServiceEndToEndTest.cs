@@ -37,7 +37,7 @@ namespace reviews_service.test.acceptance
                 {
                     ISBN = 9788175257665,
                     Reviewer = "Karen Castle",
-                    Text = "",
+                    Text = "<h1>A Classic of our Times</h1><h2>Karen Castle reviews Tolstoy's latest work</h2><p>Blah blah blah</p>",
                     Uri = "https://literaryreview.co.uk/"
                 });
         }

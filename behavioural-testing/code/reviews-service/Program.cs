@@ -16,7 +16,9 @@ namespace reviews_service
             var body = args[1];
 
             var request = new RequestSerializer().Deserialize(header, body);
-            var handler = new ReviewHandler(new RequestRepository()).Handle(request);
+            var handler = new ReviewHandler(new ReviewRepository(new DatabaseWriter()));
+
+            handler.Handle(request);
 
             Console.WriteLine("** End **");
         }
@@ -36,7 +38,7 @@ namespace reviews_service
 
                 return headers
                     .Select(h => h.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries))
-                    .ToDictionary(key => key[0], value => value[1]);
+                    .ToDictionary(key => key[0], value => string.Join(":", value.Skip(1)).Trim());
             }
 
             private PostedReview DeserializeBody(string body)
