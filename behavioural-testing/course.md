@@ -192,6 +192,20 @@ If you mostly test interactions, you'll get more interactions.
 If you mostly test behaviours, you'll get more behaviours.
 Now start from scratch and do TDD in fully behavioural style.
 ---
+#The Four Elements of Simple Design
+In XP, Kent Beck defined Simple Design as
+    1. Runs all the tests
+    2. Has no duplicated logic
+    3. States every intention important to the programmer
+    4. Has the fewest possible classes and methods
+The order is important
+
+Over time this has become
+    1. Passes the tests
+    2= No duplication
+    2= Reveals intent
+    3. Fewest elements
+---
 #Further reading
 * **Ron Jeffries**<br>
     * *Thoughts on Mocks*<br>
@@ -206,3 +220,13 @@ Now start from scratch and do TDD in fully behavioural style.
         [http://rea.tech/to-kill-a-mockingtest/](http://rea.tech/to-kill-a-mockingtest/)<br><br>
     * *Imagine a World without Mocks*<br>
         [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
+
+* **Martin Fowler**<br>
+    * *Beck Design Rules*<br>
+        [https://martinfowler.com/bliki/BeckDesignRules.html](https://martinfowler.com/bliki/BeckDesignRules.html)
+
+* **J. B. Rainsberger (JBrains)**<br>
+    * *The Four Elements of Simple Design*<br>
+        [http://blog.jbrains.ca/permalink/the-four-elements-of-simple-design](http://blog.jbrains.ca/permalink/the-four-elements-of-simple-design)
+    * *Putting An Age-Old Battle To Rest*<br>
+        [http://blog.thecodewhisperer.com/permalink/putting-an-age-old-battle-to-rest](http://blog.thecodewhisperer.com/permalink/putting-an-age-old-battle-to-rest)
