@@ -2,6 +2,6 @@
 {
     public interface IHandle<T>
     {
-        Response Handle(Request<T> request);
+        void Handle(Request<T> request);
     }
 }

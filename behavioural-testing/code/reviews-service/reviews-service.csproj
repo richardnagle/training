@@ -46,10 +46,12 @@
     <Compile Include="DatabaseWriter.cs" />
     <Compile Include="FormattedReview.cs" />
     <Compile Include="Headers.cs" />
+    <Compile Include="HtmlText.cs" />
     <Compile Include="infrastructure\IHandle.cs" />
     <Compile Include="infrastructure\ISaveReviews.cs" />
     <Compile Include="infrastructure\Response.cs" />
     <Compile Include="infrastructure\ReviewDto.cs" />
+    <Compile Include="IObserveSaving.cs" />
     <Compile Include="IObserveReview.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -67,7 +67,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="acceptance\requests\empty.http" />
+    <EmbeddedResource Include="acceptance\requests\bad_content_type.http" />
+    <EmbeddedResource Include="acceptance\requests\bad_referer.http" />
     <EmbeddedResource Include="acceptance\requests\valid.http" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

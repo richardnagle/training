@@ -36,5 +36,10 @@ namespace reviews_service.test.acceptance
 
             Assert.That(actual, Is.EqualTo(expected), "Invalid record data");
         }
+
+        public void AssertWasNotSaved()
+        {
+            Assert.That(DbExists, Is.False, "Unexpected write to database");
+        }
     }
 }

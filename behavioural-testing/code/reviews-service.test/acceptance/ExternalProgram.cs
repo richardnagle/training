@@ -26,9 +26,18 @@ namespace reviews_service.test.acceptance
                 }
             };
 
-            _process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
-            _process.ErrorDataReceived += (sender, e) => Console.WriteLine(e.Data);
+            _process.OutputDataReceived += OnConsoleMessageReceived;
+            _process.ErrorDataReceived += OnConsoleMessageReceived;
         }
+
+        private void OnConsoleMessageReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data == null) return;
+            Console.WriteLine(e.Data);
+            LastConsoleMessageReceived = e.Data;
+        }
+
+        public string LastConsoleMessageReceived { get; private set; }
 
         public int ExitCode => _process.ExitCode;
 

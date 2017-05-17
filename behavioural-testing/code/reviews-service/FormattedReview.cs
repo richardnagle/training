@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using reviews_service.infrastructure;
+﻿using reviews_service.infrastructure;
 
 namespace reviews_service
 {
@@ -17,32 +15,15 @@ namespace reviews_service
         public static FormattedReview FromPosted(PostedReview postedReview, Headers headers)
         {
             long isbn;
+            isbn = long.TryParse(postedReview.ISBN, out isbn) ? isbn : 0;
 
-            var htmlText = string.Empty;
-
-            if (postedReview.Sections != null)
-            {
-                var sections = postedReview.Sections.ToDictionary(
-                    key => key.Name,
-                    val => val.Text);
-
-                var title = FormatHtml(sections, "Title", "h1");
-                var subTitle = FormatHtml(sections, "SubTitle", "h2");
-                var body = FormatHtml(sections, "Body", "p");
-
-                htmlText = string.Concat(title, subTitle, body);
-            }
+            var textAsHtml = new HtmlText(postedReview.Sections).ToString();
 
             return new FormattedReview(
-                long.TryParse(postedReview.ISBN, out isbn) ? isbn : 0,
+                isbn,
                 postedReview.Reviewer,
                 headers.Referer,
-                htmlText);
-        }
-
-        private static string FormatHtml(IDictionary<string, string> sections, string name, string tag)
-        {
-            return sections.ContainsKey(name) ? $"<{tag}>{sections[name]}</{tag}>" : string.Empty;
+                textAsHtml);
         }
 
         public long ISBN { get; }

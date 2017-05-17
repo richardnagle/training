@@ -5,10 +5,12 @@ namespace reviews_service
     public class ReviewRepository: IObserveReview
     {
         private readonly ISaveReviews _database;
+        private readonly IObserveSaving _savingObserver;
 
-        public ReviewRepository(ISaveReviews database)
+        public ReviewRepository(ISaveReviews database, IObserveSaving savingObserver)
         {
             _database = database;
+            _savingObserver = savingObserver;
         }
 
         public void ReviewReadyForSaving(FormattedReview formattedReview)
@@ -22,6 +24,8 @@ namespace reviews_service
             };
 
             _database.Insert(dto);
+
+            _savingObserver.ReviewSaved();
         }
     }
 }

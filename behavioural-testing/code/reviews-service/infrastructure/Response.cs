@@ -2,13 +2,13 @@
 {
     public class Response
     {
-        public Response(int statusCode, string error)
+        public Response(int statusCode, string message)
         {
             StatusCode = statusCode;
-            Error = error;
+            Message = message;
         }
 
         public int StatusCode { get;}
-        public string Error { get; }
+        public string Message { get; }
     }
 }

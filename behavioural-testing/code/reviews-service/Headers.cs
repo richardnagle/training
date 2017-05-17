@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace reviews_service
 {
@@ -12,6 +13,7 @@ namespace reviews_service
         }
 
         public string Referer => GetValueOrEmpty("Referer");
+        private string ContentType => GetValueOrEmpty("Content-type");
 
         private string GetValueOrEmpty(string headerName)
         {
@@ -19,6 +21,19 @@ namespace reviews_service
             return _httpHeaders.TryGetValue(headerName, out value)
                 ? value
                 : string.Empty;
+        }
+
+        public void Validate(IObserveSaving savingObserver)
+        {
+            if (ContentType != "application/json")
+            {
+                savingObserver.ReviewNotSaved(415, "Incorrect content type");
+            }
+
+            if (!Regex.IsMatch(Referer, "http(s)?://(.*).(.*)"))
+            {
+                savingObserver.ReviewNotSaved(400, "Bad referer uri");
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using NUnit.Framework;
 
 namespace reviews_service.test.acceptance
 {
@@ -57,6 +58,16 @@ namespace reviews_service.test.acceptance
                 Header = header;
                 Body = body;
             }
+        }
+
+        public void AssertHttpStatusCodeIs(int expected)
+        {
+            Assert.That(_serviceProcess.ExitCode, Is.EqualTo(expected), "Incorrect HTTP Status Code");
+        }
+
+        public void AssertOutputMessageIs(string expected)
+        {
+            Assert.That(_serviceProcess.LastConsoleMessageReceived, Is.EqualTo(expected), "Incorrect Output Message");
         }
     }
 }
