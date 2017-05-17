@@ -12,6 +12,7 @@ class: two-column
 * Many mocks*
 * Little test data
 * Test fixture per class
+![Book Cover of Growing Object-Oriented Software, Guided by Tests - Freeman & Pryce](images/goos_cover.jpg)
 ]
 .column[
 <br>
@@ -22,8 +23,9 @@ class: two-column
 * Few mocks*
 * Much test data
 * Test fixture per state (ish)
+![Book Cover of Test Driven Development by Example - Beck](images/tdd_by_example_cover.jpg)
 ]
-\*We'll use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
+\*I'll use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
 ---
 #Case study
 We work for a publishing house developing a *Reviews-API* which receives book reviews and stores them.
