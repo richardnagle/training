@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using reviews_service.infrastructure;
 
 namespace reviews_service
@@ -25,9 +26,9 @@ namespace reviews_service
                     key => key.Name,
                     val => val.Text);
 
-                var title = sections.ContainsKey("Title") ? $"<h1>{sections["Title"]}</h1>" : string.Empty;
-                var subTitle = sections.ContainsKey("SubTitle") ? $"<h2>{sections["SubTitle"]}</h2>" : string.Empty;
-                var body = sections.ContainsKey("Body") ? $"<p>{sections["Body"]}</p>" : string.Empty;
+                var title = FormatHtml(sections, "Title", "h1");
+                var subTitle = FormatHtml(sections, "SubTitle", "h2");
+                var body = FormatHtml(sections, "Body", "p");
 
                 htmlText = string.Concat(title, subTitle, body);
             }
@@ -37,6 +38,11 @@ namespace reviews_service
                 postedReview.Reviewer,
                 headers.Referer,
                 htmlText);
+        }
+
+        private static string FormatHtml(IDictionary<string, string> sections, string name, string tag)
+        {
+            return sections.ContainsKey(name) ? $"<{tag}>{sections[name]}</{tag}>" : string.Empty;
         }
 
         public long ISBN { get; }
