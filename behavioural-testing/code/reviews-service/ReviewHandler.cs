@@ -2,15 +2,15 @@
 
 namespace reviews_service
 {
-    public class ReviewHandler: IHandle<PostedReview>, IObserveSaving
+    public class ReviewHandler: IHandle<PostedReview>, IObserveValidation
     {
         private readonly IObserveReview _reviewObserver;
-        private readonly IObserveSaving _savingObserver;
+        private readonly IObserveValidation _validationObserver;
 
-        public ReviewHandler(IObserveReview reviewObserver, IObserveSaving savingObserver)
+        public ReviewHandler(IObserveReview reviewObserver, IObserveValidation validationObserver)
         {
             _reviewObserver = reviewObserver;
-            _savingObserver = savingObserver;
+            _validationObserver = validationObserver;
         }
 
         private bool _proceedToSave = true;
@@ -20,8 +20,8 @@ namespace reviews_service
             var headers = new Headers(request.Headers);
             var formattedReview = FormattedReview.FromPosted(request.Body, headers);
 
-            headers.Validate(_savingObserver);
-            formattedReview.Validate(_savingObserver);
+            headers.Validate(_validationObserver);
+            formattedReview.Validate(_validationObserver);
 
             if (_proceedToSave)
             {
@@ -29,12 +29,9 @@ namespace reviews_service
             }
         }
 
-        public void ReviewNotSaved(int httpStatusCode, string errorMessage)
+        public void ReviewFailedValidation(int httpStatusCode, string errorMessage)
         {
             _proceedToSave = false;
         }
-
-        public void ReviewSaved()
-        {}
     }
 }

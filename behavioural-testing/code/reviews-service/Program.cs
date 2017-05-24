@@ -25,7 +25,7 @@ namespace reviews_service
             return response.StatusCode;
         }
 
-        private class RequestProcessor: IObserveSaving
+        private class RequestProcessor: IObserveSaving, IObserveValidation
         {
             private readonly ManualResetEventSlim _processingHasFinished;
             private Response _response;
@@ -38,8 +38,8 @@ namespace reviews_service
             public Response Start(string headers, string body)
             {
                 var request = new RequestSerializer().Deserialize(headers, body);
-                var savingObserver = new SavingObserver();
-                var handler = new ReviewHandler(new ReviewRepository(new DatabaseWriter(), savingObserver), savingObserver);
+                var savingObserver = new ValidationObserver();
+                var handler = new ReviewHandler(new ReviewRepository(new DatabaseWriter(), this), savingObserver);
 
                 savingObserver.Subscribe(this);
                 savingObserver.Subscribe(handler);
@@ -56,7 +56,7 @@ namespace reviews_service
                 Complete(201, "Review created");
             }
 
-            public void ReviewNotSaved(int httpStatusCode, string errorMessage)
+            public void ReviewFailedValidation(int httpStatusCode, string errorMessage)
             {
                 Complete(httpStatusCode, errorMessage);
             }
@@ -68,28 +68,20 @@ namespace reviews_service
             }
         }
 
-        private class SavingObserver : IObserveSaving
+        private class ValidationObserver : IObserveValidation
         {
-            private readonly List<IObserveSaving> _observers = new List<IObserveSaving>();
+            private readonly List<IObserveValidation> _observers = new List<IObserveValidation>();
 
-            public void Subscribe(IObserveSaving observer)
+            public void Subscribe(IObserveValidation observer)
             {
                 _observers.Add(observer);
             }
 
-            public void ReviewSaved()
+            public void ReviewFailedValidation(int httpStatusCode, string errorMessage)
             {
                 foreach (var observer in _observers)
                 {
-                    observer.ReviewSaved();
-                }
-            }
-
-            public void ReviewNotSaved(int httpStatusCode, string errorMessage)
-            {
-                foreach (var observer in _observers)
-                {
-                    observer.ReviewNotSaved(httpStatusCode, errorMessage);
+                    observer.ReviewFailedValidation(httpStatusCode, errorMessage);
                 }
             }
         }

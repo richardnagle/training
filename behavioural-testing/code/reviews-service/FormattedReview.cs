@@ -32,11 +32,11 @@ namespace reviews_service
         public string Uri { get; }
         public string Text { get; set; }
 
-        public void Validate(IObserveSaving observer)
+        public void Validate(IObserveValidation observer)
         {
             if (ISBN < 1000000000000 || ISBN > 9999999999999)
             {
-                observer.ReviewNotSaved(400, "Invalid ISBN");
+                observer.ReviewFailedValidation(400, "Invalid ISBN");
             }
         }
     }

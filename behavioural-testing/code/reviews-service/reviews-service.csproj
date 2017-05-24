@@ -53,6 +53,7 @@
     <Compile Include="infrastructure\ReviewDto.cs" />
     <Compile Include="IObserveSaving.cs" />
     <Compile Include="IObserveReview.cs" />
+    <Compile Include="IObserveValidation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="infrastructure\Request.cs" />

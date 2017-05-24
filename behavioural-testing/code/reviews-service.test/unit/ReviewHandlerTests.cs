@@ -33,7 +33,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -54,7 +54,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -75,7 +75,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(_validPostedReview, headers);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -101,7 +101,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -126,7 +126,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -150,7 +150,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -174,7 +174,7 @@ namespace reviews_service.test.unit
 
             var request = new Request<PostedReview>(review, _validHeaders);
 
-            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveValidation>());
             handler.Handle(request);
 
             reviewObserver
@@ -185,9 +185,9 @@ namespace reviews_service.test.unit
         [Test]
         public void Does_not_notify_for_save_when_validation_fails()
         {
-            var handler = new ReviewHandler(Substitute.For<IObserveReview>(), Substitute.For<IObserveSaving>());
+            var handler = new ReviewHandler(Substitute.For<IObserveReview>(), Substitute.For<IObserveValidation>());
 
-            handler.ReviewNotSaved(0, "");
+            handler.ReviewFailedValidation(0, "");
             handler.Handle(new Request<PostedReview>(new PostedReview()));
 
             Substitute.For<IObserveReview>()
@@ -198,7 +198,7 @@ namespace reviews_service.test.unit
         [Test]
         public void Notifies_with_http_415_and_error_message_when_content_type_is_incorrect()
         {
-            var savingObserver = Substitute.For<IObserveSaving>();
+            var savingObserver = Substitute.For<IObserveValidation>();
 
             var handler = new ReviewHandler(Substitute.For<IObserveReview>(), savingObserver);
 
@@ -211,7 +211,7 @@ namespace reviews_service.test.unit
 
             savingObserver
                 .Received()
-                .ReviewNotSaved(415, "Incorrect content type");
+                .ReviewFailedValidation(415, "Incorrect content type");
         }
 
         [TestCase("")]
@@ -220,7 +220,7 @@ namespace reviews_service.test.unit
         //etc...
         public void Notifies_with_http_400_and_error_message_when_referer_has_invalid_uri_format(string referer)
         {
-            var savingObserver = Substitute.For<IObserveSaving>();
+            var savingObserver = Substitute.For<IObserveValidation>();
 
             var handler = new ReviewHandler(Substitute.For<IObserveReview>(), savingObserver);
 
@@ -234,7 +234,7 @@ namespace reviews_service.test.unit
 
             savingObserver
                 .Received()
-                .ReviewNotSaved(400, "Bad referer uri");
+                .ReviewFailedValidation(400, "Bad referer uri");
         }
 
         [TestCase("123456789012")]
@@ -242,7 +242,7 @@ namespace reviews_service.test.unit
         [TestCase("XXXXXXXXXXXXXX")]
         public void Notifies_with_http_400_and_error_message_when_isbn_is_invalid(string isbn)
         {
-            var savingObserver = Substitute.For<IObserveSaving>();
+            var savingObserver = Substitute.For<IObserveValidation>();
             var handler = new ReviewHandler(Substitute.For<IObserveReview>(), savingObserver);
 
             var postedReview = new PostedReview
@@ -254,7 +254,7 @@ namespace reviews_service.test.unit
 
             savingObserver
                 .Received()
-                .ReviewNotSaved(400, "Invalid ISBN");
+                .ReviewFailedValidation(400, "Invalid ISBN");
         }
     }
 }

@@ -23,16 +23,16 @@ namespace reviews_service
                 : string.Empty;
         }
 
-        public void Validate(IObserveSaving savingObserver)
+        public void Validate(IObserveValidation savingObserver)
         {
             if (ContentType != "application/json")
             {
-                savingObserver.ReviewNotSaved(415, "Incorrect content type");
+                savingObserver.ReviewFailedValidation(415, "Incorrect content type");
             }
 
             if (!Regex.IsMatch(Referer, "http(s)?://(.*).(.*)"))
             {
-                savingObserver.ReviewNotSaved(400, "Bad referer uri");
+                savingObserver.ReviewFailedValidation(400, "Bad referer uri");
             }
         }
     }
