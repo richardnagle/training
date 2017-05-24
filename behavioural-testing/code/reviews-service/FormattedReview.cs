@@ -1,4 +1,5 @@
-﻿using reviews_service.infrastructure;
+﻿using System.Text.RegularExpressions;
+using reviews_service.infrastructure;
 
 namespace reviews_service
 {
@@ -30,5 +31,13 @@ namespace reviews_service
         public string Reviewer { get; }
         public string Uri { get; }
         public string Text { get; set; }
+
+        public void Validate(IObserveSaving observer)
+        {
+            if (ISBN < 1000000000000 || ISBN > 9999999999999)
+            {
+                observer.ReviewNotSaved(400, "Invalid ISBN");
+            }
+        }
     }
 }

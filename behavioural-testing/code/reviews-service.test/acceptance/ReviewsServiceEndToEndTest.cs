@@ -55,5 +55,14 @@ namespace reviews_service.test.acceptance
             _service.AssertOutputMessageIs("Bad referer uri");
         }
 
+        [Test]
+        public void Rejects_a_review_with_incorrect_isbn()
+        {
+            _service.ReceiveReview("bad_isbn.http");
+            _database.AssertWasNotSaved();
+            _service.AssertHttpStatusCodeIs(400);
+            _service.AssertOutputMessageIs("Invalid ISBN");
+        }
+
     }
 }

@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="acceptance\requests\bad_content_type.http" />
+    <EmbeddedResource Include="acceptance\requests\bad_isbn.http" />
     <EmbeddedResource Include="acceptance\requests\bad_referer.http" />
     <EmbeddedResource Include="acceptance\requests\valid.http" />
   </ItemGroup>

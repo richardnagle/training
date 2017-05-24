@@ -15,6 +15,12 @@ namespace reviews_service.test.unit
                 ["Referer"] = "https://www.company.com/default.html"
             };
 
+        private readonly PostedReview _validPostedReview =
+            new PostedReview
+            {
+                ISBN = "1234567890123"
+            };
+
         [Test]
         public void Notifies_when_the_review_is_formatted_ready_for_saving_with_isbn()
         {
@@ -22,7 +28,7 @@ namespace reviews_service.test.unit
 
             var review = new PostedReview
             {
-                ISBN = "42"
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -32,7 +38,7 @@ namespace reviews_service.test.unit
 
             reviewObserver
                 .Received()
-                .ReviewReadyForSaving(Arg.Is<FormattedReview>(revw => revw.ISBN == 42));
+                .ReviewReadyForSaving(Arg.Is<FormattedReview>(revw => revw.ISBN == 1234567890123));
         }
 
         [Test]
@@ -43,6 +49,7 @@ namespace reviews_service.test.unit
             var review = new PostedReview
             {
                 Reviewer = "Paul",
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -66,7 +73,7 @@ namespace reviews_service.test.unit
                 ["Content-type"] = "application/json"
             };
 
-            var request = new Request<PostedReview>(new PostedReview(), headers);
+            var request = new Request<PostedReview>(_validPostedReview, headers);
 
             var handler = new ReviewHandler(reviewObserver, Substitute.For<IObserveSaving>());
             handler.Handle(request);
@@ -88,7 +95,8 @@ namespace reviews_service.test.unit
                     new ReviewSection {Name = "Title", Text = "the title"},
                     new ReviewSection {Name = "SubTitle", Text = "the sub title"},
                     new ReviewSection {Name = "Body", Text = "the body"}
-                }
+                },
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -112,7 +120,8 @@ namespace reviews_service.test.unit
                 Sections = new[]
                 {
                     new ReviewSection {Name = "Title", Text = "the title"},
-                }
+                },
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -135,7 +144,8 @@ namespace reviews_service.test.unit
                 Sections = new[]
                 {
                     new ReviewSection {Name = "SubTitle", Text = "the sub title"},
-                }
+                },
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -158,7 +168,8 @@ namespace reviews_service.test.unit
                 Sections = new[]
                 {
                     new ReviewSection {Name = "Body", Text = "the body"}
-                }
+                },
+                ISBN = "1234567890123"
             };
 
             var request = new Request<PostedReview>(review, _validHeaders);
@@ -224,6 +235,26 @@ namespace reviews_service.test.unit
             savingObserver
                 .Received()
                 .ReviewNotSaved(400, "Bad referer uri");
+        }
+
+        [TestCase("123456789012")]
+        [TestCase("12345678901234")]
+        [TestCase("XXXXXXXXXXXXXX")]
+        public void Notifies_with_http_400_and_error_message_when_isbn_is_invalid(string isbn)
+        {
+            var savingObserver = Substitute.For<IObserveSaving>();
+            var handler = new ReviewHandler(Substitute.For<IObserveReview>(), savingObserver);
+
+            var postedReview = new PostedReview
+            {
+                ISBN = isbn
+            };
+
+            handler.Handle(new Request<PostedReview>(postedReview, _validHeaders));
+
+            savingObserver
+                .Received()
+                .ReviewNotSaved(400, "Invalid ISBN");
         }
     }
 }

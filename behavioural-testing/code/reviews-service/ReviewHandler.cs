@@ -18,10 +18,14 @@ namespace reviews_service
         public void Handle(Request<PostedReview> request)
         {
             var headers = new Headers(request.Headers);
+            var formattedReview = FormattedReview.FromPosted(request.Body, headers);
+
             headers.Validate(_savingObserver);
+            formattedReview.Validate(_savingObserver);
+
             if (_proceedToSave)
             {
-                _reviewObserver.ReviewReadyForSaving(FormattedReview.FromPosted(request.Body, headers));
+                _reviewObserver.ReviewReadyForSaving(formattedReview);
             }
         }
 
