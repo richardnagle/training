@@ -48,7 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReviewHtmlFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewDtoMapperTests.cs" />
+    <Compile Include="SectionWalkerTests.cs" />
+    <Compile Include="ReviewValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\reviews-service\reviews-service.csproj">
