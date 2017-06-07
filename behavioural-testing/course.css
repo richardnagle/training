@@ -23,3 +23,44 @@ tr:nth-child(odd) {background: #FFF}
 
 .two-column .column:first-of-type {width: 50%}
 .two-column .column:last-of-type {width: 50%}
+
+table.quadrants{
+    border-collapse: collapse;
+    height: 80%;
+    width: 100%;
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: larger;
+    text-align: center;
+}
+
+table.quadrants tr {
+    background: #FFF
+}
+
+table.quadrants td{
+    width: 45%;
+    border: 1px solid black;
+}
+
+table.quadrants td.titles{
+    width: 5%;
+    border: 0;
+}
+
+table.quadrants tr.titles{
+    height: 10%;
+}
+
+table.quadrants tr.titles td{
+    border: 0;
+}
+
+table.quadrants td.titles div {
+    transform: rotate(90deg);
+    white-space: nowrap;
+}
+
+table.quadrants tr.titles,
+table.quadrants td.titles div {
+    color: red;
+}

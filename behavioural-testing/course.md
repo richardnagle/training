@@ -27,6 +27,30 @@ class: two-column
 ]
 \*I'll use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
 ---
+#Testing-Style Quadrants
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist testing</td>
+        <td>State based testing</td>
+    </tr>
+</table>
+
+---
 #Case study
 We work for a publishing house developing a *Reviews-API* which receives book reviews and stores them.
 The request is in an industry standard API...
