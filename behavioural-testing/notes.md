@@ -1,10 +1,71 @@
 ## TDD Schools ##
-* Use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
+* Use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spies, etc.
+
+## Mockist Inside-Out ##
+
+### Show Framework Code
+`git checkout code-start-point`
+* Introduce solution structure
+* Show how handlers work
+    * `IHandle<T>`
+    * `Request`
+    * `PostedReview`
+    * `Response`
+* Show persistance
+    * `ISaveReviews`
+    * `ReviewDto`
+
+### Create ReviewValidator
+`git checkout ??tag??`
+* Show test
+    * Mention that we wont use `[SetUp]` as it makes test easier to read on a course
+    * Explain lack of mocks - we're at bottom level at the moment
+* Show `ReviewValidator`
+* Show we create an interface `IReviewValidator`
+
+### Create SectionWalker
+`move-git-next`
+* Same pattern as before
+
+### Create ReviewDtoMapper
+`move-git-next`
+* Same pattern as before
+
+### Create ReviewHtmlFormatter
+`move-git-next`
+* Same patten as before
+* Asks what people feel about the classes we created
+    * Lack cohesion
+    * Procedural code
+    * -er classes
+
+### Integrate validation and saving into handler
+`move-git-next`
+* Show handler tests    
+* Show handler
+
+### Integrate remaining components into handler
+`move-git-next`
+* look at `Saved_review_has_sections_formatted_as_html` test
+    * Talk about test complexity
+        * Look at all the set-up
+        * Need to set-up things that are inconsequential to the test (validation)
+* Show handler
+    * Talk about implementation complexity
+        * Constructor
+        * SRP
+        * Conditional complexity
+* Maybe test complexity leads to implementation complexity
+
+### Refactoring - move SectionWalker inside HtmlFormatter
+* show that in Handler the `SectionWalker` produces data for `HtmlFormatter` so the dependency can be moved in there.
+* First add test and method on `HtmlFormatter`
+* Then demonstrate how hard the refactoring is in Handler
 
 ## Mockist Outside-In ##
 
-### moi1 Create Acceptance Test ###
-
+### Create Acceptance Test ###
+`git checkout ??tag??`
 * Acceptance tests are mandatory in GOOS style
 * Walking skeleton
 * Show test
@@ -16,16 +77,16 @@
     * Explain our simple persistance strategy
     * Show how the asserts work
 
-### moi2 Walking Skeleton ###
-
+### Walking Skeleton ###
+`move-git-next`
 * Show `Handler`
 * Show `Program`
 * Emphasis that this is bear minimum to get working
 * No unit tests yet
 * Show that test passes
 
-### moi3 First Unit Test ###
-
+### First Unit Test ###
+`move-git-next`
 * Show new acceptance test and valid.http file
 * Show new `ReviewHandlerTests` fixture
     * Explain the test
@@ -39,14 +100,14 @@
 * Note that one test has spawned several classes
 * Note that new acceptance tests fails
 
-### moi4 Request Repository ###
-
+### Request Repository ###
+`move-git-next`
 * Show `ReviewRepositoryTests`
 * Show `ReviewRepository` & `DatabaseWriter`
 * All tests pass
 
-### moi5 Add html formatting ###
-
+### Add html formatting ###
+`move-git-next`
 * Show that we extended the acceptance test
 * Show `ReviewHandlerTests`
     * Notice that we have split the test by parameter passed
@@ -57,14 +118,14 @@
 * Reflect that we added a test to `ReviewHandlerTests` but didn't change `ReviewHandler`
 * All tests pass
 
-### moi6.1 / moi6.2 Refactoring html formatting ###
-
+### Refactoring html formatting ###
+`move-git-next`
 * 6.1 reflect that when you extract a method as a static often means you can extract class
 * We are free to refactor without changing tests
 * All the tests pass
 
-### moi7 Add the validation
-
+### Add the validation
+`move-git-next`
 * Explain strategy
     * http return code as exit code
     * `'Review created'` or error message shown on console
@@ -80,5 +141,6 @@
 * Show the spare method in `ReviewHandler`
 * All the test pass
 
-### moi8 One final refactoring
+### One final refactoring
+`move-git-next`
 * Split the interface
