@@ -3,10 +3,11 @@ class: centre, middle
 
 ---
 class: two-column
-#TDD Schools
+#TDD Styles: Testing
 .column[
-**Chicago/Detroit School**
-* aka Classical or State-Based
+**Classicist**
+* aka State-Based
+* aka Chicago/Detroit School
 * Tests state (input/output)
 * Few mocks
 * Much test data
@@ -16,8 +17,9 @@ class: two-column
 ]
 .column[
 <br>
-**London School**
-* aka Mockist or Interaction
+**Mockist**
+* aka Interaction
+* aka London School
 * Tests interaction/collaberation
 * Many mocks
 * Little test data
@@ -27,7 +29,7 @@ class: two-column
 ]
 ---
 class: two-column
-#TDD Styles
+#TDD Styles: Implementation
 .column[
 **Inside-out**
 * Start with a unit test
@@ -63,8 +65,8 @@ class: two-column
     </tr>
     <tr class="titles">
         <td class="titles"></td>
-        <td>Mockist testing</td>
-        <td>State based testing</td>
+        <td>Mockist</td>
+        <td>Classicist</td>
     </tr>
 </table>
 
@@ -156,8 +158,8 @@ After the save a status code 201 is sent with no error message.
     </tr>
     <tr class="titles">
         <td class="titles"></td>
-        <td>Mockist testing</td>
-        <td>State based testing</td>
+        <td>Mockist</td>
+        <td>Classicist</td>
     </tr>
 </table>
 ---
@@ -235,8 +237,8 @@ public interface .purple-text[IReviewHtmlFormatter];
     </tr>
     <tr class="titles">
         <td class="titles"></td>
-        <td>Mockist testing</td>
-        <td>State based testing</td>
+        <td>Mockist</td>
+        <td>Classicist</td>
     </tr>
 </table>
 ---
