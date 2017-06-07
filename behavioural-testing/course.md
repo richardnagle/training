@@ -137,10 +137,32 @@ The `Text` property shall be formatted as follows:
 ```
 
 After the save a status code 201 is sent with no error message.
-
 ---
-#Testing in a Mockist fashion
-Firstly I need to decide what my dependencies are. Let's write down what I need to do...
+#Inside-Out Mockist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td class="selected"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist testing</td>
+        <td>State based testing</td>
+    </tr>
+</table>
+---
+#Getting Started
+Firstly I need to decide what to build. Let's write down what I need to do...
 
 .written-text[
 Validate the http headers
@@ -158,7 +180,7 @@ Format the section to html
 Map the html to ReviewDto.Text
 ]
 ---
-# Deciding on my Dependencies
+# Deciding on my Components
 .written-text[
 .red-text[Validate] the http headers
 
@@ -177,27 +199,46 @@ Map the html to ReviewDto.Text
 
 Therefore
 .written-text[
-public interface .red-text[IValidator];
+public interface .red-text[IReviewValidator];
 
 public interface .blue-text[ISectionWalker];
 
 public interface .green-text[IReviewDtoMapper];
 
-public interface .purple-text[IHtmlFormatter];
+public interface .purple-text[IReviewHtmlFormatter];
 ]
-
 ---
-#Good example
-Only mock persistence
-Use builder
----
-#What I don't like about mockist example
-* Test complexity
-* Tests do not demonstrate behaviour
-* Tight coupling to code
-* Difficult to re factor
-* Too many tests
-* Testing incidentals (e.g. Mapper)
+#Conclusions: Inside-Out Mockist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td class="selected">
+            <ul>
+                <li>Test complexity</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Tight coupling to code</li>
+                <li>Difficult to refactor</li>
+                <li>Too many tests</li>
+                <li>Testing incidentals (e.g. Mapper)</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist testing</td>
+        <td>State based testing</td>
+    </tr>
+</table>
 ---
 #What's worse about behavioural testing
 * Test case organisation

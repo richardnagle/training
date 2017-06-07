@@ -29,21 +29,33 @@ table.quadrants{
     height: 80%;
     width: 100%;
     font-family: 'Covered By Your Grace', cursive;
-    font-size: larger;
-    text-align: center;
 }
 
 table.quadrants tr {
-    background: #FFF
+    background: #FFF;
+    height: 35%;
 }
 
 table.quadrants td{
     width: 45%;
     border: 1px solid black;
+    #font-size: smaller;
+}
+table.quadrants ul{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+table.quadrants li{
+    padding: 0;
+    text-align: left;
+}
+
+table.quadrants td.selected{
+    background-color: cyan;
 }
 
 table.quadrants td.titles{
-    width: 5%;
+    width: 10%;
     border: 0;
 }
 
@@ -63,4 +75,6 @@ table.quadrants td.titles div {
 table.quadrants tr.titles,
 table.quadrants td.titles div {
     color: red;
+    font-size: xx-large;
+    text-align: center;
 }
