@@ -26,6 +26,25 @@ class: two-column
 ![Book Cover of Growing Object-Oriented Software, Guided by Tests - Freeman & Pryce](images/goos_cover.jpg)
 ]
 ---
+class: two-column
+#TDD Styles
+.column[
+**Inside-out**
+* Start with a unit test
+* Components are built in any<br>order
+* Components are integrated<br>at end
+* Acceptance testing optional
+]
+.column[
+<br>
+**Outside-in**
+* Start with an acceptance test
+* Components built from outside (UI)
+* Components are integrated incrementally
+<br><br>
+* Acceptance testing mandatory
+]
+---
 #Testing-Style Quadrants
 <table class="quadrants">
     <tr>
