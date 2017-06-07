@@ -6,11 +6,22 @@ namespace reviews_service
     {
         private readonly ISaveReviews _databaseService;
         private readonly IReviewValidator _validator;
+        private readonly IReviewDtoMapper _mapper;
+        private readonly IReviewHtmlFormatter _htmlFormatter;
+        private readonly ISectionWalker _sectionWalker;
 
-        public PostedReviewHandler(ISaveReviews databaseService, IReviewValidator validator)
+        public PostedReviewHandler(
+            ISaveReviews databaseService,
+            IReviewValidator validator,
+            IReviewDtoMapper mapper,
+            IReviewHtmlFormatter htmlFormatter,
+            ISectionWalker sectionWalker)
         {
             _databaseService = databaseService;
             _validator = validator;
+            _mapper = mapper;
+            _htmlFormatter = htmlFormatter;
+            _sectionWalker = sectionWalker;
         }
 
         public Response Handle(Request<PostedReview> request)
@@ -30,7 +41,19 @@ namespace reviews_service
                 return new Response(400, "Invalid ISBN");
             }
 
-            _databaseService.Insert(new ReviewDto());
+            var reviewDto = new ReviewDto();
+
+            var title = _sectionWalker.GetText(request.Body.Sections, "Title");
+            var subTitle = _sectionWalker.GetText(request.Body.Sections, "SubTitle");
+            var body = _sectionWalker.GetText(request.Body.Sections, "Body");
+
+            var text = _htmlFormatter.Format(title, subTitle, body);
+
+            _mapper.MapHttpHeaders(request.Headers, reviewDto);
+            _mapper.MapBodyFields(request.Body, reviewDto);
+            _mapper.MapText(text, reviewDto);
+
+            _databaseService.Insert(reviewDto);
 
             return new Response(201, "");
         }
