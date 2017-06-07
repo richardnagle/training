@@ -44,9 +44,11 @@
     <Compile Include="infrastructure\ISaveReviews.cs" />
     <Compile Include="infrastructure\Response.cs" />
     <Compile Include="infrastructure\ReviewDto.cs" />
+    <Compile Include="IReviewValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="infrastructure\Request.cs" />
     <Compile Include="infrastructure\PostedReview.cs" />
+    <Compile Include="ReviewValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
