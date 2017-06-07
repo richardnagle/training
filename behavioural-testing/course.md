@@ -3,29 +3,28 @@ class: centre, middle
 
 ---
 class: two-column
-#Intro
+#TDD Schools
 .column[
-**Interaction**
-* Mockist style
-* London school
-* Tests interaction/collaberation
-* Many mocks*
-* Little test data
-* Test fixture per class
-![Book Cover of Growing Object-Oriented Software, Guided by Tests - Freeman & Pryce](images/goos_cover.jpg)
+**Chicago/Detroit School**
+* aka Classical or State-Based
+* Tests state (input/output)
+* Few mocks
+* Much test data
+* Test fixture per state
+<br><br>
+![Book Cover of Test Driven Development by Example - Beck](images/tdd_by_example_cover.jpg)
 ]
 .column[
 <br>
-**Behavioural**
-* Classic style
-* Chicago/Detroit school
-* Tests state (input/output)
-* Few mocks*
-* Much test data
-* Test fixture per state (ish)
-![Book Cover of Test Driven Development by Example - Beck](images/tdd_by_example_cover.jpg)
+**London School**
+* aka Mockist or Interaction
+* Tests interaction/collaberation
+* Many mocks
+* Little test data
+* Test fixture per class
+<br><br>
+![Book Cover of Growing Object-Oriented Software, Guided by Tests - Freeman & Pryce](images/goos_cover.jpg)
 ]
-\*I'll use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
 ---
 #Testing-Style Quadrants
 <table class="quadrants">

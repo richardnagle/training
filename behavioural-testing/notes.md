@@ -1,3 +1,6 @@
+## TDD Schools ##
+* Use the term *mock* to cover all types of doubles - stubs, mocks, fakes, spyies, etc.
+
 ## Mockist Outside-In ##
 
 ### moi1 Create Acceptance Test ###
