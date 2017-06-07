@@ -46,6 +46,7 @@
     <Compile Include="infrastructure\ISaveReviews.cs" />
     <Compile Include="infrastructure\Response.cs" />
     <Compile Include="infrastructure\ReviewDto.cs" />
+    <Compile Include="PostedReviewHandler.cs" />
     <Compile Include="IReviewDtoMapper.cs" />
     <Compile Include="IReviewValidator.cs" />
     <Compile Include="ISectionWalker.cs" />
