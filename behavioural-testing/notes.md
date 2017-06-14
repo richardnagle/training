@@ -59,8 +59,12 @@
 
 ### Refactoring - move SectionWalker inside HtmlFormatter
 * show that in Handler the `SectionWalker` produces data for `HtmlFormatter` so the dependency can be moved in there.
-* First add test and method on `HtmlFormatter`
+`move-git-next`
+* Show changes to `ReviewHtmlFormatter` and test
+
 * Then demonstrate how hard the refactoring is in Handler
+    * Use auto-refactoring tools to remove the `SectionWalker` dependency
+    * Need to change the test in the middle of the refactoring
 
 ## Mockist Outside-In ##
 
