@@ -65,6 +65,7 @@
 * Then demonstrate how hard the refactoring is in Handler
     * Use auto-refactoring tools to remove the `SectionWalker` dependency
     * Need to change the test in the middle of the refactoring
+    
 
 ## Classicist Inside-Out ##
 
