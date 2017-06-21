@@ -66,6 +66,72 @@
     * Use auto-refactoring tools to remove the `SectionWalker` dependency
     * Need to change the test in the middle of the refactoring
 
+## Classicist Inside-Out ##
+
+### Add Components ###
+`git checkout ??tag??`
+* Same components and tests
+* Interfaces have been removed
+
+### First unit test for ReviewHandler ###
+`move-git-next`
+* Basic start-up test
+
+### Tests for saving ###
+`move-git-next`
+* Show test
+    * Note how we are passing real dependencies in constructor
+    * Talk about how we only test enough to get the integration
+        * Didn't test Author - same source as ISBN
+        * Use of regex for body
+    * Note the use of a mock - explain why (external dependency)
+> Show Slide - But, Hang-On, you used a Mock
+
+### Creating a Builder  ###
+* Show complexity in existing test
+`move-git-next`
+* Show builder
+
+> Show Slide - Creating Test Builders
+
+* Show cleaned-up test
+    * In 1st test we just use default values
+    * In 2nd test we assign values pertinent to that test - never rely or assert on default builder values
+
+### Add Validation to ReviewHandler  ###
+`move-git-next`
+* Show tests and implementation
+* Point out how builder enables quick and clean tests
+
+### Refactoring - move SectionWalker inside HtmlFormatter
+* Add this test to `ReviewHtmlFormatterTest`
+```
+        [Test]
+        public void Formats_text_to_html2()
+        {
+            var sections = new[]
+            {
+                new ReviewSection {Name = "title", Text = "the title"},
+                new ReviewSection {Name = "subtitle", Text = "the sub title"},
+                new ReviewSection {Name = "body", Text = "the content"},
+            };
+
+            var htmlFormatter = new ReviewHtmlFormatter(new SectionWalker());
+
+            var formatted = htmlFormatter.Format(sections);
+            Assert.That(formatted, Is.EqualTo("<h1>the title</h1>\r\n<h2>the sub title</h2>\r\n<p>the content</p>\r\n"));
+        }
+```
+* Implement without removing existing functionality
+* Change each `ReviewHtmlFormatter`constructor in `ReviewHandlerTests`
+* Change `ReviewHandler`
+* Tidy up
+    * Unused code in `ReviewHandler`
+    * Unused `SectionWalker` in `ReviewHandler`
+    * Remove redundant test in `ReviewHtmlFormatterTests`
+    * Remove ctor, make old `Format` private and rename
+
+
 ## Mockist Outside-In ##
 
 ### Create Acceptance Test ###

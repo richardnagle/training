@@ -242,14 +242,28 @@ public interface .purple-text[IReviewHtmlFormatter];
     </tr>
 </table>
 ---
-#What's worse about behavioural testing
-* Test case organisation
-    * Fix with feature folder
-    * Fix with coverage tool
-* Tight coupling to constructors
-    * Fix with builders
-* Cascading test failures
-    * No fix but is this such a bad thing?
+#Inside-Out Classicist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td></td>
+        <td class="selected"></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
 ---
 #But, Hang-On, you used a Mock
 When should I use a mock
@@ -270,6 +284,133 @@ No really
 * When something is unreliable
     * Remote call
 * When behaviour is very complex (very rare)
+---
+#Creating Test Builders
+* Create a private field for each piece of data you want to set
+* In the constructor, set the value of each private field to a valid value for the most common use-case
+* Add a `With` method to set the value for each private field; at the end `return this` to create fluent interface
+* Add a `Build` method which creates a new instance and populates it from private field values
+* No conditional logic in `With` or `Build` methods
+* Compose builders together using `With` methods
+```c#
+    .WithCustomer(new CustomerBuilder().WithName("foobar"))
+```
+or
+```c#
+    .WithCustomer(cust => cust.WithName("foobar"))
+```
+---
+#Conclusions: Inside-Out Classicist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td>
+            <ul>
+                <li>Test complexity</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Tight coupling to code</li>
+                <li>Difficult to refactor</li>
+                <li>Too many tests</li>
+                <li>Testing incidentals (e.g. Mapper)</li>
+            </ul>
+        </td>
+        <td class="selected">
+            <ul>
+                <li>More readable tests (with builders)</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Tight coupling to code</li>
+                <li>Better to refactor, but still difficult</li>
+                <li>Too many tests</li>
+                <li>Testing incidentals (e.g. Mapper)</li>
+                <li>Duplication of testing</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
+---
+#Classicist Code
+```c#
+    public Response Handle(Request<PostedReview> request)
+    {
+        if (!_reviewValidator.ValidateContentType(request))
+            return new Response(415, "Incorrect content type");
+
+        if (!_reviewValidator.ValidateReferer(request))
+            return new Response(400, "Bad referer uri");
+
+        if (!_reviewValidator.ValidateISBN(request))
+            return new Response(400, "Invalid ISBN");
+
+        var title = _sectionWalker.GetText(request.Body.Sections, "title");
+        var subTitle = _sectionWalker.GetText(request.Body.Sections, "subtitle");
+        var body = _sectionWalker.GetText(request.Body.Sections, "body");
+        var bodyHtml = _htmlFormatter.Format(title, subTitle, body);
+
+        var dto = new ReviewDto();
+
+        _dtoMapper.MapBodyFields(request.Body, dto);
+        _dtoMapper.MapText(bodyHtml, dto);
+        _dtoMapper.MapHttpHeaders(request.Headers, dto);
+
+        _database.Insert(dto);
+
+        return new Response(201,"");
+    }
+```
+---
+#Mockist Code
+```c#
+    public Response Handle(Request<PostedReview> request)
+    {
+        if (!_validator.ValidateContentType(request))
+            return new Response(415, "Incorrect content type");
+
+        if (!_validator.ValidateReferer(request))
+            return new Response(400, "Bad referer uri");
+
+        if (!_validator.ValidateISBN(request))
+            return new Response(400, "Invalid ISBN");
+
+        var reviewDto = new ReviewDto();
+
+        var title = _sectionWalker.GetText(request.Body.Sections, "Title");
+        var subTitle = _sectionWalker.GetText(request.Body.Sections, "SubTitle");
+        var body = _sectionWalker.GetText(request.Body.Sections, "Body");
+
+        var text = _htmlFormatter.Format(title, subTitle, body);
+
+        _mapper.MapHttpHeaders(request.Headers, reviewDto);
+        _mapper.MapBodyFields(request.Body, reviewDto);
+        _mapper.MapText(text, reviewDto);
+
+        _databaseService.Insert(reviewDto);
+
+        return new Response(201, "");
+    }
+```
+---
+#What's worse about behavioural testing
+* Test case organisation
+    * Fix with feature folder
+    * Fix with coverage tool
+* Tight coupling to constructors
+    * Fix with builders
+* Cascading test failures
+    * No fix but is this such a bad thing?
 ---
 #That's only half the story.
 All I did was take a sut designed in mocks style and improve tests to a behavioural style
