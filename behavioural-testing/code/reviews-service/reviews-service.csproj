@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReviewHandler.cs" />
     <Compile Include="ReviewHtmlFormatter.cs" />
     <Compile Include="infrastructure\IHandle.cs" />
     <Compile Include="infrastructure\ISaveReviews.cs" />
