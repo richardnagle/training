@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using reviews_service.infrastructure;
+﻿using reviews_service.infrastructure;
 
 namespace reviews_service
 {
@@ -8,20 +7,21 @@ namespace reviews_service
         public Response Handle(Request<PostedReview> request)
         {
             var headers = new HttpHeaders(request.Headers);
+            var isbn = new Isbn(request.Body.ISBN);
 
             if (headers.ContentType.IsInvalid())
             {
                 return headers.ContentType.GetErrorReponse();
             }
 
-            if (!Regex.IsMatch(headers.Referer, "http(s)?://(.*).(.*)"))
+            if (headers.Referer.IsInvalid())
             {
-                return new Response(400, "Bad referer uri");
+                return headers.Referer.GetErrorResponse();
             }
 
-            if (!Regex.IsMatch(request.Body.ISBN, @"^\d{13}$"))
+            if (isbn.IsInvalid())
             {
-                return new Response(400, "Invalid isbn");
+                return isbn.GetErrorResponse();
             }
 
             return new Response(201, string.Empty);
