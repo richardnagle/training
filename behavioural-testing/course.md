@@ -403,6 +403,82 @@ or
     }
 ```
 ---
+#Inside-Out Classicist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td class="selected"></td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
+---
+#Conclusions: Outside-In Mockist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td>
+            <ul>
+                <li>Test complexity</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Tight coupling to code</li>
+                <li>Difficult to refactor</li>
+                <li>Too many tests</li>
+                <li>Testing incidentals (e.g. Mapper)</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>More readable tests (with builders)</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Tight coupling to code</li>
+                <li>Better to refactor, but still difficult</li>
+                <li>Too many tests</li>
+                <li>Testing incidentals (e.g. Mapper)</li>
+                <li>Duplication of testing</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td class="selected">
+            <ul>
+                <li>Test complexity</li>
+                <li>Tests do not demonstrate behaviour</li>
+                <li>Loose coupling to code</li>
+                <li>Easier to refactor</li>
+                <li>Too many tests</li>
+                <li>Tests focus on core elements</li>
+                <li>Clean uncoupled implementation</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
+---
+
 #What's worse about behavioural testing
 * Test case organisation
     * Fix with feature folder
