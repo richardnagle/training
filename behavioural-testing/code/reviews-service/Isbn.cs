@@ -3,7 +3,7 @@ using reviews_service.infrastructure;
 
 namespace reviews_service
 {
-    public class Isbn
+    public class Isbn: IValidateAReview
     {
         private readonly string _value;
 

@@ -9,19 +9,14 @@ namespace reviews_service
             var headers = new HttpHeaders(request.Headers);
             var isbn = new Isbn(request.Body.ISBN);
 
-            if (headers.ContentType.IsInvalid())
-            {
-                return headers.ContentType.GetErrorReponse();
-            }
+            var validators = new IValidateAReview[] {headers.ContentType, headers.Referer, isbn};
 
-            if (headers.Referer.IsInvalid())
+            foreach (var validator in validators)
             {
-                return headers.Referer.GetErrorResponse();
-            }
-
-            if (isbn.IsInvalid())
-            {
-                return isbn.GetErrorResponse();
+                if (validator.IsInvalid())
+                {
+                    return validator.GetErrorResponse();
+                }
             }
 
             return new Response(201, string.Empty);

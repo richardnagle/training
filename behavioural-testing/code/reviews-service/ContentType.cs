@@ -2,7 +2,7 @@
 
 namespace reviews_service
 {
-    public class ContentType
+    public class ContentType: IValidateAReview
     {
         private readonly string _value;
 
@@ -16,7 +16,7 @@ namespace reviews_service
             return _value != "application/json";
         }
 
-        public Response GetErrorReponse()
+        public Response GetErrorResponse()
         {
             return new Response(415, "Incorrect content type");
         }
