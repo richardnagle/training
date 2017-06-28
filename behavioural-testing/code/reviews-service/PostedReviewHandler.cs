@@ -7,12 +7,14 @@ namespace reviews_service
     {
         public Response Handle(Request<PostedReview> request)
         {
-            if (request.Headers["Content-type"] != "application/json")
+            var headers = new HttpHeaders(request.Headers);
+
+            if (headers.ContentType != "application/json")
             {
                 return new Response(415, "Incorrect content type");
             }
 
-            if (!Regex.IsMatch(request.Headers["Referer"], "http(s)?://(.*).(.*)"))
+            if (!Regex.IsMatch(headers.Referer, "http(s)?://(.*).(.*)"))
             {
                 return new Response(400, "Bad referer uri");
             }
