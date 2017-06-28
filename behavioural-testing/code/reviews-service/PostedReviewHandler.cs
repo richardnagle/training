@@ -1,4 +1,5 @@
-﻿using reviews_service.infrastructure;
+﻿using System.Text.RegularExpressions;
+using reviews_service.infrastructure;
 
 namespace reviews_service
 {
@@ -6,7 +7,22 @@ namespace reviews_service
     {
         public Response Handle(Request<PostedReview> request)
         {
-            return new Response(415,"Incorrect content type");
+            if (request.Headers["Content-type"] != "application/json")
+            {
+                return new Response(415, "Incorrect content type");
+            }
+
+            if (!Regex.IsMatch(request.Headers["Referer"], "http(s)?://(.*).(.*)"))
+            {
+                return new Response(400, "Bad referer uri");
+            }
+
+            if (!Regex.IsMatch(request.Body.ISBN, @"^\d{13}$"))
+            {
+                return new Response(400, "Invalid isbn");
+            }
+
+            return new Response(201, string.Empty);
         }
     }
 }

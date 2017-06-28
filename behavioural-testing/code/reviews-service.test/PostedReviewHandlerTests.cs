@@ -19,5 +19,84 @@ namespace reviews_service.test
             Assert.That(response.StatusCode, Is.EqualTo(415));
             Assert.That(response.Error, Is.EqualTo("Incorrect content type"));
         }
+
+        [Test]
+        public void When_content_type_is_valid_returns_201_with_no_error_message()
+        {
+            var request = new PostedReviewBuilder()
+                .WithContentType("application/json")
+                .Build();
+
+            var handler = new PostedReviewHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(201));
+            Assert.That(response.Error, Is.Empty);
+        }
+
+        [TestCase("")]
+        [TestCase("just some text")]
+        public void When_referer_has_invalid_uri_returns_400_with_error_message(string referer)
+        {
+            var request = new PostedReviewBuilder()
+                .WithRefererUrl(referer)
+                .Build();
+
+            var handler = new PostedReviewHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(400));
+            Assert.That(response.Error, Is.EqualTo("Bad referer uri"));
+        }
+
+        [TestCase("http://somecompany.com")]
+        [TestCase("https://somecompany.com")]
+        public void When_referer_uri_is_valid_returns_201_with_no_error_message(string referer)
+        {
+            var request = new PostedReviewBuilder()
+                .WithRefererUrl(referer)
+                .Build();
+
+            var handler = new PostedReviewHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(201));
+            Assert.That(response.Error, Is.Empty);
+        }
+
+        [TestCase("123456789012")]
+        [TestCase("12345678901234")]
+        [TestCase("XXXXXXXXXXXXXX")]
+        public void When_referer_has_invalid_isbn_returns_400_with_error_message(string isbn)
+        {
+            var request = new PostedReviewBuilder()
+                .WithIsbn(isbn)
+                .Build();
+
+            var handler = new PostedReviewHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(400));
+            Assert.That(response.Error, Is.EqualTo("Invalid isbn"));
+        }
+
+        [Test]
+        public void When_isbn_is_valid_returns_201_with_no_error_message()
+        {
+            var request = new PostedReviewBuilder()
+                .WithIsbn("1234567890123")
+                .Build();
+
+            var handler = new PostedReviewHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(201));
+            Assert.That(response.Error, Is.Empty);
+        }
     }
 }
