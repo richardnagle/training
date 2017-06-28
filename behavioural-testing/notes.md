@@ -214,3 +214,41 @@
 ### One final refactoring
 `move-git-next`
 * Split the interface
+
+## Classicist Outside-in
+
+### Create first unit test
+`git checkout ??tag??`
+* Show test
+    * Note use of builder copied from previous example
+    * Note lack of dependencies - we're going straight into handler
+* Show implementation
+
+### Add validation
+`move-git-next`
+* Show how we add negative and positive cases to demonstrate behavior
+
+### Refactor - add HttpHeader
+* Show duplication in accessing headers
+`move-git-next`
+* Show HttpHeaders
+* Show ReviewHeaders
+* Note refactoring was possible with test changes
+
+### Refactor - create value objects
+* Show duplication is structure - three `if` statements returning `new Response`
+`move-git-next`
+* Show ContentType class
+* Show how its constructed in HttpHeaders
+* Show usage in Handler
+`move-git-next`
+* Show Referer and Isbn classes repeating the prev pattern
+* Show Handler - still duping `if` but now we can see the abstraction
+`move-git-next`
+* Show IValidateAReview
+* It by implemented in Isbn, ContentType and Referer
+* Show how it cleans up Handler
+* Re-emphasis - all this refactoring was done without test changes
+
+TODO - implement save
+TODO - Refactor to add Review value object containing the various parts
