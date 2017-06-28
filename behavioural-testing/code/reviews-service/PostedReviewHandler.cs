@@ -9,9 +9,9 @@ namespace reviews_service
         {
             var headers = new HttpHeaders(request.Headers);
 
-            if (headers.ContentType != "application/json")
+            if (headers.ContentType.IsInvalid())
             {
-                return new Response(415, "Incorrect content type");
+                return headers.ContentType.GetErrorReponse();
             }
 
             if (!Regex.IsMatch(headers.Referer, "http(s)?://(.*).(.*)"))

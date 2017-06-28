@@ -11,7 +11,7 @@ namespace reviews_service
             _requestHeaders = requestHeaders;
         }
 
-        public string ContentType => _requestHeaders["Content-type"];
+        public ContentType ContentType => new ContentType(_requestHeaders["Content-type"]);
 
         public string Referer => _requestHeaders["Referer"];
     }
