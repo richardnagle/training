@@ -10,6 +10,7 @@ namespace reviews_service.test
         private string _bodySubTitle = "the-sub-title";
         private string _bodyText = "the-body";
         private string _refererUrl = "http://the-referer.com";
+        private string _contentType = "application/json";
 
         public PostedReviewBuilder WithIsbn(string isbn)
         {
@@ -41,6 +42,12 @@ namespace reviews_service.test
             return this;
         }
 
+        public PostedReviewBuilder WithContentType(string contentType)
+        {
+            _contentType = contentType;
+            return this;
+        }
+
         public Request<PostedReview> Build()
         {
             return new Request<PostedReview>(
@@ -56,6 +63,7 @@ namespace reviews_service.test
                 },
                 new Dictionary<string, string>()
                 {
+                    ["Content-type"] = _contentType,
                     ["Referer"] = _refererUrl
                 });
         }
