@@ -21,5 +21,10 @@ namespace reviews_service
         {
             return new Response(400, "Bad referer uri");
         }
+
+        public void Populate(ReviewDto reviewDto)
+        {
+            reviewDto.Uri = _uri;
+        }
     }
 }

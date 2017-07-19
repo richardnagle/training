@@ -34,11 +34,12 @@ namespace reviews_service
 
             var reviewDto = new ReviewDto
             {
-                ISBN = long.Parse(postedReview.ISBN),
                 Reviewer = postedReview.Reviewer,
-                Uri = request.Headers["Referer"],
                 Text = $"<h1>{h1Text}</h1>\r\n<h2>{h2Text}</h2>\r\n<p>{pText}</p>"
             };
+
+            isbn.Populate(reviewDto);
+            headers.Referer.Populate(reviewDto);
 
             _database.Insert(reviewDto);
 

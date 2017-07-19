@@ -21,5 +21,10 @@ namespace reviews_service
         {
             return new Response(400, "Invalid isbn");
         }
+
+        public void Populate(ReviewDto reviewDto)
+        {
+            reviewDto.ISBN = long.Parse(_value);
+        }
     }
 }
