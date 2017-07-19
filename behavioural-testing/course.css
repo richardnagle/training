@@ -39,8 +39,9 @@ table.quadrants tr {
 table.quadrants td{
     width: 45%;
     border: 1px solid black;
-    #font-size: smaller;
+    font-size: smaller;
 }
+
 table.quadrants ul{
     margin-top: 0;
     margin-bottom: 0;
@@ -48,6 +49,10 @@ table.quadrants ul{
 table.quadrants li{
     padding: 0;
     text-align: left;
+}
+
+.not-selected{
+    opacity: 0.25;
 }
 
 table.quadrants td.selected{
@@ -77,4 +82,78 @@ table.quadrants td.titles div {
     color: red;
     font-size: xx-large;
     text-align: center;
+}
+
+.cross {
+    display:inline-block;
+    width:22px;
+    height:22px;
+    background-color: red;
+    border-radius:11px;
+    left:0;
+    top:0;
+    transform: rotate(45deg);
+    margin-right: 5px;
+}
+
+.cross:after {
+    content: "";
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:10px;
+    top:6px;
+}
+
+.cross:before {
+    content: "";
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:10px;
+    top:6px;
+    transform: rotate(90deg);
+}
+
+.tick {
+    display:inline-block;
+    width:22px;
+    height:22px;
+    background-color: green;
+    border-radius:11px;
+    left:0;
+    top:0;
+    transform: rotate(45deg);
+    margin-right: 5px;
+}
+
+.tick:after {
+    content: "";
+    position: absolute;
+    width:4px;
+    height:3px;
+    background-color:#fff;
+    left:8px;
+    top:12px;
+}
+
+.tick:before {
+    content: "";
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color: #fff;
+    left:11px;
+    top:6px;
+}
+
+.conclusions {
+  list-style-type: none;
+}
+
+.conclusions text {
+  position: relative;
+  top: -6px;
 }

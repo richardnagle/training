@@ -217,13 +217,14 @@ public interface .purple-text[IReviewHtmlFormatter];
             <div>Inside-out</div>
         </td>
         <td class="selected">
-            <ul>
-                <li>Test complexity</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Tight coupling to code</li>
-                <li>Difficult to refactor</li>
-                <li>Too many tests</li>
-                <li>Testing incidentals (e.g. Mapper)</li>
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Loosely coupled design</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="cross"></span><text>Poor abstractions</text></li>
+                <li><span class="cross"></span><text>Difficult to refactor</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
             </ul>
         </td>
         <td></td>
@@ -306,25 +307,26 @@ or
         <td class="titles">
             <div>Inside-out</div>
         </td>
-        <td>
-            <ul>
-                <li>Test complexity</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Tight coupling to code</li>
-                <li>Difficult to refactor</li>
-                <li>Too many tests</li>
-                <li>Testing incidentals (e.g. Mapper)</li>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Loosely coupled design</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="cross"></span><text>Poor abstractions</text></li>
+                <li><span class="cross"></span><text>Difficult to refactor</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
             </ul>
         </td>
         <td class="selected">
-            <ul>
-                <li>More readable tests (with builders)</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Tight coupling to code</li>
-                <li>Better to refactor, but still difficult</li>
-                <li>Too many tests</li>
-                <li>Testing incidentals (e.g. Mapper)</li>
-                <li>Duplication of testing</li>
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>More readable tests (with builders)</text></li>
+                <li><span class="tick"></span><text>Better to refactor, but still difficult</text></li>
+                <li><span class="cross"></span><text>Tests less autonomous</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
+                <li><span class="cross"></span><text>Duplication of testing</text></li>
             </ul>
         </td>
     </tr>
@@ -403,7 +405,7 @@ or
     }
 ```
 ---
-#Inside-Out Classicist Testing
+#Outside-In Mockist Testing
 <table class="quadrants">
     <tr>
         <td class="titles">
@@ -432,25 +434,26 @@ or
         <td class="titles">
             <div>Inside-out</div>
         </td>
-        <td>
-            <ul>
-                <li>Test complexity</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Tight coupling to code</li>
-                <li>Difficult to refactor</li>
-                <li>Too many tests</li>
-                <li>Testing incidentals (e.g. Mapper)</li>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Loosely coupled design</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="cross"></span><text>Poor abstractions</text></li>
+                <li><span class="cross"></span><text>Difficult to refactor</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
             </ul>
         </td>
-        <td>
-            <ul>
-                <li>More readable tests (with builders)</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Tight coupling to code</li>
-                <li>Better to refactor, but still difficult</li>
-                <li>Too many tests</li>
-                <li>Testing incidentals (e.g. Mapper)</li>
-                <li>Duplication of testing</li>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>More readable tests (with builders)</text></li>
+                <li><span class="tick"></span><text>Better to refactor, but still difficult</text></li>
+                <li><span class="cross"></span><text>Tests less autonomous</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
+                <li><span class="cross"></span><text>Duplication of testing</text></li>
             </ul>
         </td>
     </tr>
@@ -459,14 +462,15 @@ or
             <div>Outside-in</div>
         </td>
         <td class="selected">
-            <ul>
-                <li>Test complexity</li>
-                <li>Tests do not demonstrate behaviour</li>
-                <li>Loose coupling to code</li>
-                <li>Easier to refactor</li>
-                <li>Too many tests</li>
-                <li>Tests focus on core elements</li>
-                <li>Clean uncoupled implementation</li>
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Tests less coupled to code</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="tick"></span><text>Easier to refactor</text></li>
+                <li><span class="tick"></span><text>Tests focus on core elements</text></li>
+                <li><span class="tick"></span><text>Clean uncoupled implementation</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Too many tests</text></li>
+                <li><span class="cross"></span><text>Difficult to implement (over-engineered)</text></li>
             </ul>
         </td>
         <td></td>
@@ -479,22 +483,95 @@ or
 </table>
 ---
 
-#What's worse about behavioural testing
-* Test case organisation
-    * Fix with feature folder
-    * Fix with coverage tool
-* Tight coupling to constructors
-    * Fix with builders
-* Cascading test failures
-    * No fix but is this such a bad thing?
+#Outside-In Classicist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td></td>
+        <td class="selected"></td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
 ---
-#That's only half the story.
-All I did was take a sut designed in mocks style and improve tests to a behavioural style
-TDD is about design at least as much as testing
-How you go about TDD has a direct effect on the design if your code
-If you mostly test interactions, you'll get more interactions.
-If you mostly test behaviours, you'll get more behaviours.
-Now start from scratch and do TDD in fully behavioural style.
+
+#Conclusions: Outside-In Classicist Testing
+<table class="quadrants">
+    <tr>
+        <td class="titles">
+            <div>Inside-out</div>
+        </td>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Loosely coupled design</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="cross"></span><text>Poor abstractions</text></li>
+                <li><span class="cross"></span><text>Difficult to refactor</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
+            </ul>
+        </td>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>More readable tests (with builders)</text></li>
+                <li><span class="tick"></span><text>Better to refactor, but still difficult</text></li>
+                <li><span class="cross"></span><text>Tests less autonomous</text></li>
+                <li><span class="cross"></span><text>Tests tightly coupled to code</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Testing incidentals (e.g. Mapper)</text></li>
+                <li><span class="cross"></span><text>Duplication of testing</text></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="titles">
+            <div>Outside-in</div>
+        </td>
+        <td class="not-selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Tests less coupled to code</text></li>
+                <li><span class="tick"></span><text>Test autonomy</text></li>
+                <li><span class="tick"></span><text>Easier to refactor</text></li>
+                <li><span class="tick"></span><text>Tests focus on core elements</text></li>
+                <li><span class="tick"></span><text>Clean uncoupled implementation</text></li>
+                <li><span class="cross"></span><text>Tests do not demonstrate behaviour</text></li>
+                <li><span class="cross"></span><text>Too many tests</text></li>
+                <li><span class="cross"></span><text>Difficult to implement (over-engineered)</text></li>
+            </ul>
+        </td>
+        <td class="selected">
+            <ul class="conclusions">
+                <li><span class="tick"></span><text>Low test coupling to code</text></li>
+                <li><span class="tick"></span><text>Easiest to refactor</text></li>
+                <li><span class="tick"></span><text>Tests demonstrate behaviour</text></li>
+                <li><span class="tick"></span><text>Clean implementation</text></li>
+                <li><span class="tick"></span><text>Good abstractions</text></li>
+                <li><span class="tick"></span><text>Least number of tests</text></li>
+                <li><span class="cross"></span><text>Poor test autonomy</text></li>
+                <li><span class="cross"></span><text>Design is more coupled</text></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="titles">
+        <td class="titles"></td>
+        <td>Mockist</td>
+        <td>Classicist</td>
+    </tr>
+</table>
+
 ---
 #The Four Elements of Simple Design
 In XP, Kent Beck defined Simple Design as
@@ -510,7 +587,7 @@ Over time this has become
     2= Reveals intent
     3. Fewest elements
 ---
-#Further reading
+#Further reading I
 * **Ron Jeffries**<br>
     * *Thoughts on Mocks*<br>
         [http://ronjeffries.com/articles/015-11/tdd-mocks/](http://ronjeffries.com/articles/015-11/tdd-mocks/)
@@ -524,7 +601,8 @@ Over time this has become
         [http://rea.tech/to-kill-a-mockingtest/](http://rea.tech/to-kill-a-mockingtest/)<br><br>
     * *Imagine a World without Mocks*<br>
         [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
-
+---
+#Further reading II
 * **Martin Fowler**<br>
     * *Beck Design Rules*<br>
         [https://martinfowler.com/bliki/BeckDesignRules.html](https://martinfowler.com/bliki/BeckDesignRules.html)
