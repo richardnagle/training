@@ -29,11 +29,14 @@ namespace reviews_service
                 }
             }
 
+            var populators = new IPopulateReviewDto[] {isbn, headers.Referer, htmlBody, reviewer};
+
             var reviewDto = new ReviewDto();
-            isbn.Populate(reviewDto);
-            headers.Referer.Populate(reviewDto);
-            htmlBody.Populate(reviewDto);
-            reviewer.Populate(reviewDto);
+
+            foreach (var populator in populators)
+            {
+                populator.Populate(reviewDto);
+            }
 
             _database.Insert(reviewDto);
 

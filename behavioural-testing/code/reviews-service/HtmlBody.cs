@@ -4,7 +4,7 @@ using reviews_service.infrastructure;
 
 namespace reviews_service
 {
-    public class HtmlBody
+    public class HtmlBody: IPopulateReviewDto
     {
         private readonly IEnumerable<ReviewSection> _sections;
 

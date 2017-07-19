@@ -3,7 +3,7 @@ using reviews_service.infrastructure;
 
 namespace reviews_service
 {
-    public class Referer: IValidateAReview
+    public class Referer: IValidateAReview, IPopulateReviewDto
     {
         private readonly string _uri;
 

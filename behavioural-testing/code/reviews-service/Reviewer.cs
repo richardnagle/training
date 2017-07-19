@@ -2,7 +2,7 @@
 
 namespace reviews_service
 {
-    public class Reviewer
+    public class Reviewer: IPopulateReviewDto
     {
         private readonly string _value;
 

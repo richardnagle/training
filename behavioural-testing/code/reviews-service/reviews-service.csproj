@@ -47,6 +47,7 @@
     <Compile Include="infrastructure\ISaveReviews.cs" />
     <Compile Include="infrastructure\Response.cs" />
     <Compile Include="infrastructure\ReviewDto.cs" />
+    <Compile Include="IPopulateReviewDto.cs" />
     <Compile Include="Isbn.cs" />
     <Compile Include="IValidateAReview.cs" />
     <Compile Include="PostedReviewHandler.cs" />
