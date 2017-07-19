@@ -55,6 +55,7 @@
     <Compile Include="infrastructure\Request.cs" />
     <Compile Include="infrastructure\PostedReview.cs" />
     <Compile Include="Referer.cs" />
+    <Compile Include="Review.cs" />
     <Compile Include="Reviewer.cs" />
     <Compile Include="Section.cs" />
   </ItemGroup>
