@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentType.cs" />
+    <Compile Include="HtmlBody.cs" />
     <Compile Include="HttpHeaders.cs" />
     <Compile Include="infrastructure\IHandle.cs" />
     <Compile Include="infrastructure\ISaveReviews.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="infrastructure\Request.cs" />
     <Compile Include="infrastructure\PostedReview.cs" />
     <Compile Include="Referer.cs" />
+    <Compile Include="Reviewer.cs" />
+    <Compile Include="Section.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

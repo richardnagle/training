@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using reviews_service.infrastructure;
+﻿using reviews_service.infrastructure;
 
 namespace reviews_service
 {
@@ -17,6 +16,8 @@ namespace reviews_service
             var postedReview = request.Body;
             var headers = new HttpHeaders(request.Headers);
             var isbn = new Isbn(postedReview.ISBN);
+            var htmlBody = new HtmlBody(postedReview.Sections);
+            var reviewer = new Reviewer(postedReview.Reviewer);
 
             var validators = new IValidateAReview[] {headers.ContentType, headers.Referer, isbn};
 
@@ -28,18 +29,11 @@ namespace reviews_service
                 }
             }
 
-            var h1Text = postedReview.Sections.First(sect => sect.Name == "title").Text;
-            var h2Text = postedReview.Sections.First(sect => sect.Name == "subtitle").Text;
-            var pText = postedReview.Sections.First(sect => sect.Name == "body").Text;
-
-            var reviewDto = new ReviewDto
-            {
-                Reviewer = postedReview.Reviewer,
-                Text = $"<h1>{h1Text}</h1>\r\n<h2>{h2Text}</h2>\r\n<p>{pText}</p>"
-            };
-
+            var reviewDto = new ReviewDto();
             isbn.Populate(reviewDto);
             headers.Referer.Populate(reviewDto);
+            htmlBody.Populate(reviewDto);
+            reviewer.Populate(reviewDto);
 
             _database.Insert(reviewDto);
 
