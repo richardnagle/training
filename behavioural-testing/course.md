@@ -573,6 +573,60 @@ or
 </table>
 
 ---
+#Do You Remember This Slide
+.written-text[
+.red-text[Validate] the http headers
+
+.red-text[Validate] the body
+
+.blue-text[Walk] the sections
+
+.green-text[Map] the http headers to the ReviewDto
+
+.green-text[Map] the body to the ReviewDto
+
+.purple-text[Format] the section to html
+
+.green-text[Map] the html to ReviewDto.Text
+]
+Therefore
+.written-text[
+public interface .red-text[IReviewValidator];
+
+public interface .blue-text[ISectionWalker];
+
+public interface .green-text[IReviewDtoMapper];
+
+public interface .purple-text[IReviewHtmlFormatter];
+]
+---
+#Concentrate on Nouns instead of Verbs
+.written-text[
+Validate the .red-text[http headers]
+
+Validate the .blue-text[body]
+
+Walk the .green-text[sections]
+
+Map the .red-text[http headers] to the ReviewDto
+
+Map the .blue-text[body] to the ReviewDto
+
+Format the .green-text[section] to html
+
+Map the .blue-text[html] to ReviewDto.Text
+]
+Therefore
+.written-text[
+public class .red-text[HttpHeaders];
+
+public class .blue-text[HtmlBody];
+
+public class .green-text[Section];
+]
+---
+#Name Classes after what they are, not what they do
+---
 #The Four Elements of Simple Design
 In XP, Kent Beck defined Simple Design as
     1. Runs all the tests
