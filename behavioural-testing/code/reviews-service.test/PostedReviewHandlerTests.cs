@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
+using reviews_service.infrastructure;
 
 namespace reviews_service.test
 {
@@ -12,7 +14,7 @@ namespace reviews_service.test
                 .WithContentType("**invalid content type **")
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
@@ -27,7 +29,7 @@ namespace reviews_service.test
                 .WithContentType("application/json")
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
@@ -43,7 +45,7 @@ namespace reviews_service.test
                 .WithRefererUrl(referer)
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
@@ -59,7 +61,7 @@ namespace reviews_service.test
                 .WithRefererUrl(referer)
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
@@ -76,7 +78,7 @@ namespace reviews_service.test
                 .WithIsbn(isbn)
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
@@ -91,12 +93,36 @@ namespace reviews_service.test
                 .WithIsbn("1234567890123")
                 .Build();
 
-            var handler = new PostedReviewHandler();
+            var handler = new PostedReviewHandler(Substitute.For<ISaveReviews>());
 
             var response = handler.Handle(request);
 
             Assert.That(response.StatusCode, Is.EqualTo(201));
             Assert.That(response.Error, Is.Empty);
+        }
+
+        [Test]
+        public void When_review_is_valid_it_is_saved()
+        {
+            var database = Substitute.For<ISaveReviews>();
+
+            var request = new PostedReviewBuilder()
+                .WithIsbn("1234567890123")
+                .WithReviewer("Jane Bloggs")
+                .WithRefererUrl("https://tempuri.org/review.html")
+                .WithBodyTitle("Title")
+                .WithBodySubTitle("SubTitle")
+                .WithBodyText("Body")
+                .Build();
+
+            var handler = new PostedReviewHandler(database);
+
+            handler.Handle(request);
+
+            database.Received().Insert(Arg.Is<ReviewDto>(dto => dto.ISBN == 1234567890123));
+            database.Received().Insert(Arg.Is<ReviewDto>(dto => dto.Reviewer == "Jane Bloggs"));
+            database.Received().Insert(Arg.Is<ReviewDto>(dto => dto.Uri == "https://tempuri.org/review.html"));
+            database.Received().Insert(Arg.Is<ReviewDto>(dto => dto.Text == "<h1>Title</h1>\r\n<h2>SubTitle</h2>\r\n<p>Body</p>"));
         }
     }
 }

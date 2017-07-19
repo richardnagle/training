@@ -11,6 +11,7 @@ namespace reviews_service.test
         private string _bodyText = "the-body";
         private string _refererUrl = "http://the-referer.com";
         private string _contentType = "application/json";
+        private string _reviewer = "the-reviewer";
 
         public PostedReviewBuilder WithIsbn(string isbn)
         {
@@ -48,12 +49,19 @@ namespace reviews_service.test
             return this;
         }
 
+        public PostedReviewBuilder WithReviewer(string reviewer)
+        {
+            _reviewer = reviewer;
+            return this;
+        }
+
         public Request<PostedReview> Build()
         {
             return new Request<PostedReview>(
                 new PostedReview
                 {
                     ISBN = _isbn,
+                    Reviewer = _reviewer,
                     Sections = new[]
                     {
                         new ReviewSection {Name = "title", Text = _bodyTitle},
