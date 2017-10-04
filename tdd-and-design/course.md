@@ -624,7 +624,17 @@ public class .blue-text[HtmlBody];
 public class .green-text[Section];
 ]
 ---
-#Name Classes after what they are, not what they do
+##Name Classes after what they are (Not what they do)
+* Avoid _er/_or classes - `Manager`, `Helper`, `Validator`, `Mapper`, `Authenticator`
+    * These classes are generally just collections of procedures without state
+    * Such classes encourage the Anemic Domain anti-pattern
+    * _Service is an _er class in disguise
+* Prefer classes named after identifiable things in your system - `Switch`, `Quote`, `Database`, `Credential`
+    * So instead of `SwitchValidator`, `SwitchMapper` and `SwitchAuthenticator`
+    * Have a `Switch` class with methods `Validate()`, `Map()` and `Authenticate()`.
+* Encourages better abstractions
+    * Instead of `ISwitchValidator`, `ISwitchMapper` and `ISwitchAuthenticator`
+    * We can have more generic `IValidate`, `IMap` and `IAuthenticate`.
 ---
 #Final Thought
 <br>
