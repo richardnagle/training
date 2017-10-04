@@ -626,21 +626,19 @@ public class .green-text[Section];
 ---
 #Name Classes after what they are, not what they do
 ---
-#The Four Elements of Simple Design
-In XP, Kent Beck defined Simple Design as
-    1. Runs all the tests
-    2. Has no duplicated logic
-    3. States every intention important to the programmer
-    4. Has the fewest possible classes and methods
-The order is important
-
-Over time this has become
-    1. Passes the tests
-    2= No duplication
-    2= Reveals intent
-    3. Fewest elements
+#Final Thought
+<br>
+> *Test first development is a powerful way to do outside in programming. As my associate Scott Bain likes to say,
+> "Think of the test as your first client." I love this statement because it really summarizes a whole range of
+> benefits that you get from doing TDD. By writing the test first, you're thinking from the client's perspective,
+> about what you want rather than how to get it, and this ripples through the design and implementation of the system,
+> keeping it well encapsulated and easy to understand.*
+<br>
+<br>
+**David Bernstein<br>**
+[https://dzone.com/articles/outside-in-or-inside-out](https://dzone.com/articles/outside-in-or-inside-out)
 ---
-#Further reading I
+#Further reading
 * **Ron Jeffries**<br>
     * *Thoughts on Mocks*<br>
         [http://ronjeffries.com/articles/015-11/tdd-mocks/](http://ronjeffries.com/articles/015-11/tdd-mocks/)
@@ -654,14 +652,3 @@ Over time this has become
         [http://rea.tech/to-kill-a-mockingtest/](http://rea.tech/to-kill-a-mockingtest/)<br><br>
     * *Imagine a World without Mocks*<br>
         [https://www.slideshare.net/kenbot/imagine-a-world-without-mocks](https://www.slideshare.net/kenbot/imagine-a-world-without-mocks)
----
-#Further reading II
-* **Martin Fowler**<br>
-    * *Beck Design Rules*<br>
-        [https://martinfowler.com/bliki/BeckDesignRules.html](https://martinfowler.com/bliki/BeckDesignRules.html)
-
-* **J. B. Rainsberger (JBrains)**<br>
-    * *The Four Elements of Simple Design*<br>
-        [http://blog.jbrains.ca/permalink/the-four-elements-of-simple-design](http://blog.jbrains.ca/permalink/the-four-elements-of-simple-design)
-    * *Putting An Age-Old Battle To Rest*<br>
-        [http://blog.thecodewhisperer.com/permalink/putting-an-age-old-battle-to-rest](http://blog.thecodewhisperer.com/permalink/putting-an-age-old-battle-to-rest)
