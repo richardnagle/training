@@ -3,11 +3,10 @@ class: centre, middle
 
 ---
 class: two-column
-#TDD Styles: Testing
+#TDD Styles
 .column[
 **Classicist**
-* aka State-Based
-* aka Chicago/Detroit School
+* aka State-Based Testing
 * Tests state (input/output)
 * Few mocks
 * Much test data
@@ -18,9 +17,8 @@ class: two-column
 .column[
 <br>
 **Mockist**
-* aka Interaction
-* aka London School
-* Tests interaction/collaberation
+* aka Interaction Testing
+* Tests interaction/collaboration
 * Many mocks
 * Little test data
 * Test fixture per class
@@ -29,22 +27,23 @@ class: two-column
 ]
 ---
 class: two-column
-#TDD Styles: Implementation
+#TDD Styles
 .column[
 **Inside-out**
 * Start with a unit test
 * Components are built in any<br>order
 * Components are integrated<br>at end
 * Acceptance testing optional
+* Focuses on *what* to create
 ]
 .column[
 <br>
 **Outside-in**
 * Start with an acceptance test
-* Components built from outside (UI)
+* Components built from outside (UI)<br><br>
 * Components are integrated incrementally
-<br><br>
 * Acceptance testing mandatory
+* Focuses on *how* to create
 ]
 ---
 #Testing-Style Quadrants
